@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {sendMessage} from '../../actions/MessageActions';
+import Message from '../../components/Message/Message';
 
 class Main extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class Main extends Component {
     }
 
     handleOnClick = () => {
+        this.setState({messageText: ''});
         this.props.send(this.state.messageText);
     };
 
@@ -20,11 +22,11 @@ class Main extends Component {
     };
 
     render() {
-        const messageView = this.props.messages.map(message => <div key={message.timestamp}>{message.timestamp} {message.text}</div>);
+        const messageView = this.props.messages.map(message => <Message key={message.timestamp} {...message}/>);
         return ( 
             <div>
                 {messageView}
-                <input type="text" onChange={this.handleOnChange}/>
+                <input type="text" onChange={this.handleOnChange} value={this.state.messageText}/>
                 <button onClick={this.handleOnClick} >Send</button>
             </div>
         );

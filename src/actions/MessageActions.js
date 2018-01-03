@@ -5,7 +5,7 @@ export function sendMessage(message) {
         type: SEND_MESSAGE,
         message: {
             text: message,
-            timestamp: Date.now()
+            timestamp: new Date()
         }
     };
 }
