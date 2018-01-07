@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {sendMessage} from '../../actions/MessageActions';
-import {connectIO} from '../../actions/IOActions';
 import Message from '../../components/Message/Message';
 
 class Main extends Component {
@@ -11,8 +10,6 @@ class Main extends Component {
         this.state = {
             messageText: ''
         };
-
-        props.connect('http://localhost:3000');
     }
 
     handleOnClick = () => {
@@ -45,7 +42,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         send: message => dispatch(sendMessage(message)),
-        connect: url => dispatch(connectIO(url))
     };
 };
 
