@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {sendMessage} from '../../actions/MessageActions';
 import Message from '../../components/Message/Message';
+import MessageBox from '../../components/MessageBox/MessageBox';
 
 class Main extends Component {
     constructor(props) {
@@ -12,22 +12,12 @@ class Main extends Component {
         };
     }
 
-    handleOnClick = () => {
-        this.setState({messageText: ''});
-        this.props.send(this.state.messageText);
-    };
-
-    handleOnChange = event => {
-        this.setState({messageText: event.target.value});
-    };
-
     render() {
         const messageView = this.props.messages.map(message => <Message key={message.timestamp} {...message}/>);
         return ( 
             <div>
                 {messageView}
-                <input type="text" onChange={this.handleOnChange} value={this.state.messageText}/>
-                <button onClick={this.handleOnClick} >Send</button>
+                <MessageBox/>
             </div>
         );
     }
@@ -39,10 +29,4 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        send: message => dispatch(sendMessage(message)),
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps)(Main);
