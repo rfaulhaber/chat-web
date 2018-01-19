@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
-import socket, {startSocket} from './middlewares/socket';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import socket, { startSocket } from './middlewares/socket';
 import Main from './layouts/Main/Main';
 import app from './reducers/reducer';
 
@@ -10,9 +10,9 @@ startSocket(store, 'http://localhost:3000');
 
 export class App extends Component {
     render() {
-        return ( 
+        return (
             <Provider store={store}>
-                <Main/>
+                <Main />
             </Provider>
         );
     }
