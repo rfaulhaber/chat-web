@@ -6,8 +6,8 @@ export function sendMessage(message) {
         type: SEND_MESSAGE,
         message: {
             text: message,
-            timestamp: new Date()
-        }
+            timestamp: new Date(),
+        },
     };
 }
 
@@ -16,7 +16,7 @@ export function receiveMessage(message) {
         type: RECEIVE_MESSAGE,
         message: {
             text: message,
-            timestamp: message.timestamp || new Date()
-        }
+            timestamp: message.timestamp || new Date(),
+        },
     };
 }
