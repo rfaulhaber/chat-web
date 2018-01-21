@@ -21,11 +21,19 @@ class MessageBox extends Component {
         this.setState({text: event.target.value});
     };
 
+    hanldeOnKeyPress = event => {
+        if (event.key === 'Enter') {
+            this.handleOnClick();
+        } else {
+            this.handleOnChange(event);
+        }
+    };
+
     render() {
         return (
-            <div className="input">
-                <input type="text" onChange={this.handleOnChange} value={this.state.text}/>
-                <button onClick={this.handleOnClick}>Send</button>
+            <div className="input-area">
+                <input type="text" className="input" onChange={this.handleOnChange} onKeyPress={this.hanldeOnKeyPress} value={this.state.text}/>
+                <button className="input-button" onClick={this.handleOnClick}>Send</button>
             </div>
         );
     }
