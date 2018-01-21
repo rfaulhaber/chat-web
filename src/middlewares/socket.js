@@ -5,18 +5,20 @@ import { AUTHENTICATE, receiveID } from '../actions/AuthActions';
 let socket = null;
 
 const socketMiddleware = store => next => (action) => {
+    const state = store.getState();
     if (action.type === SEND_MESSAGE) {
         console.log('emitting chat');
         const message = Object.assign({}, action.message, { 
-            from: store.getState().serverID,
-            alias: store.getState().userID
+            from: state.serverID,
+            alias: state.userID
         });
         action.message = message;
         socket.emit('chat message', message);
     } else if (action.type === AUTHENTICATE && action.userID && action.password) {
         console.log('saving id');
         socket.emit('saveID', {
-            id: action.userID,
+            userID: action.userID,
+            serverID: state.serverID,
             password: action.password
         });
     }
