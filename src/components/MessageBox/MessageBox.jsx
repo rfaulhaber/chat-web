@@ -10,6 +10,10 @@ class MessageBox extends Component {
         this.state = {
             text: ''
         };
+    };
+
+    componentDidMount() {
+        this.focusTextInput();
     }
 
     handleOnClick = () => {
@@ -29,10 +33,21 @@ class MessageBox extends Component {
         }
     };
 
+    focusTextInput = () => {
+        this.textInput.focus();
+    };
+
     render() {
         return (
             <div className="input-area">
-                <input type="text" className="input" onChange={this.handleOnChange} onKeyPress={this.hanldeOnKeyPress} value={this.state.text}/>
+                <input 
+                    type="text" 
+                    className="input" 
+                    onChange={this.handleOnChange} 
+                    onKeyPress={this.hanldeOnKeyPress} 
+                    value={this.state.text}
+                    ref={input => {this.textInput = input;}}
+                />
                 <button className="input-button" onClick={this.handleOnClick}>Send</button>
             </div>
         );

@@ -5,7 +5,7 @@ export default class Message extends Component {
         const {timestamp, text, from} = this.props;
         return(
             <div>
-                {timestamp.toLocaleString()} {text} {from}
+                 {from} {text} {timestamp.toLocaleString()} 
             </div>
         );
     };
